@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Liberian Accent TTS</title>
+    <style>
+      body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; margin: 24px; color: #1f2937; }
+      h1 { margin-top: 0; }
+      .card { max-width: 880px; border: 1px solid #e5e7eb; border-radius: 10px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+      label { font-weight: 600; }
+      select, textarea, input[type="text"], button { width: 100%; padding: 10px; margin-top: 6px; margin-bottom: 16px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 15px; }
+      textarea { min-height: 120px; resize: vertical; }
+      .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+      .row-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      button { background: #111827; color: #fff; border: none; cursor: pointer; }
+      button:hover { background: #0b1220; }
+      .hint { font-size: 13px; color: #6b7280; margin-top: -10px; margin-bottom: 12px; }
+      .audio-wrap { display: flex; align-items: center; gap: 12px; }
+      .pill { display: inline-block; padding: 2px 8px; border: 1px solid #d1d5db; border-radius: 999px; font-size: 12px; color: #4b5563; }
+    </style>
+  </head>
+  <body>
+    <h1>Liberian-accent style Text-to-Speech</h1>
+    <p class="hint">This uses Microsoft Edge voices via <code>edge-tts</code>. Try West African English voices (e.g., Nigeria or Ghana) for a Liberian-like accent.</p>
+
+    <div class="card">
+      <label for="text">Text</label>
+      <textarea id="text" placeholder="Type what you want to hear...">How your body?</textarea>
+
+      <label for="voice">Voice</label>
+      <select id="voice"></select>
+      <p class="hint">Suggested: <span class="pill">en-NG-AbeoNeural</span>, <span class="pill">en-NG-EzinneNeural</span>, <span class="pill">en-GH-AkuaNeural</span>, <span class="pill">en-GH-KofiNeural</span></p>
+
+      <div class="row">
+        <div>
+          <label for="rate">Rate</label>
+          <select id="rate">
+            <option value="-25%">-25%</option>
+            <option value="-15%">-15%</option>
+            <option value="-10%">-10%</option>
+            <option value="-5%">-5%</option>
+            <option value="+0%" selected>+0%</option>
+            <option value="+5%">+5%</option>
+            <option value="+10%">+10%</option>
+            <option value="+15%">+15%</option>
+            <option value="+25%">+25%</option>
+          </select>
+        </div>
+        <div>
+          <label for="pitch">Pitch</label>
+          <select id="pitch">
+            <option value="-6Hz">-6Hz</option>
+            <option value="-3Hz">-3Hz</option>
+            <option value="+0Hz" selected>+0Hz</option>
+            <option value="+3Hz">+3Hz</option>
+            <option value="+6Hz">+6Hz</option>
+          </select>
+        </div>
+        <div>
+          <label for="volume">Volume</label>
+          <select id="volume">
+            <option value="-50%">-50%</option>
+            <option value="-25%">-25%</option>
+            <option value="+0%" selected>+0%</option>
+            <option value="+25%">+25%</option>
+            <option value="+50%">+50%</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div>
+          <label for="format">Audio format</label>
+          <select id="format">
+            <option value="audio-24khz-48kbitrate-mono-mp3" selected>MP3 24kHz 48kbps mono</option>
+            <option value="audio-24khz-96kbitrate-mono-mp3">MP3 24kHz 96kbps mono</option>
+            <option value="audio-16khz-32kbitrate-mono-mp3">MP3 16kHz 32kbps mono</option>
+            <option value="riff-24khz-16bit-mono-pcm">WAV (RIFF) 24kHz 16bit mono</option>
+            <option value="ogg-24khz-16bit-mono-opus">OGG Opus 24kHz 16bit mono</option>
+          </select>
+        </div>
+        <div style="display:flex; align-items:end;">
+          <button id="speak">Synthesize</button>
+        </div>
+      </div>
+
+      <div class="audio-wrap">
+        <audio id="player" controls></audio>
+        <a id="download" href="#" download="tts.mp3" style="display:none;">Download</a>
+      </div>
+
+      <p id="status" class="hint"></p>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
